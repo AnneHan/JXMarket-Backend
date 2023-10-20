@@ -1,16 +1,20 @@
 package com.hyl.api.system.entity.business;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.hyl.core.entity.BaseEntity;
-import java.math.BigDecimal;
+import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -25,15 +29,22 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("m_purchase_detail")
 @ApiModel(value = "MPurchaseDetailEntity对象", description = "采购明细表")
-public class MPurchaseDetailEntity extends BaseEntity {
+public class MPurchaseDetailEntity {
+
+    @TableId(type = IdType.AUTO)
+    private String id;
 
     @ApiModelProperty("采购单编号")
     @TableField("purchase_id")
-    private Long purchaseId;
+    private String purchaseId;
 
     @ApiModelProperty("商品编号")
     @TableField("good_id")
-    private Long goodId;
+    private String goodId;
+
+    @ApiModelProperty("商品名称")
+    @TableField(exist = false)
+    private String goodName;
 
     @ApiModelProperty("数量")
     @TableField("quantity")
@@ -43,5 +54,22 @@ public class MPurchaseDetailEntity extends BaseEntity {
     @TableField("unit_price")
     private BigDecimal unitPrice;
 
+    @TableField(fill = FieldFill.INSERT)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime createTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime updateTime;
+
+    @JsonIgnore
+    private String updateBy;
+
+    @JsonIgnore
+    private String createBy;
 
 }

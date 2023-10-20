@@ -112,4 +112,9 @@ public class MGoodQuantityServiceImpl extends ServiceImpl<MGoodQuantityMapper, M
         return ResultBean.ok(ResponseCodeEnum.HTTP_SUCCESS_CODE_200, HttpConstant.DEFAULT_LANGUAGE);
     }
 
+    @Override
+    public MGoodQuantityEntity queryIdByGoodId(String id) {
+        return this.baseMapper.selectOne(new QueryWrapper<MGoodQuantityEntity>().eq("id", id));
+    }
+
 }

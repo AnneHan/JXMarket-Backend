@@ -28,4 +28,6 @@ public interface IMGoodQuantityService extends IService<MGoodQuantityEntity> {
      * 更新信息
      */
     ResultBean<Object> dealGoodNum(Map<String, Object> map) throws HylException;
+
+    MGoodQuantityEntity queryIdByGoodId(String id);
 }
