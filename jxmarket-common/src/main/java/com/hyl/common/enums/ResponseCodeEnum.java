@@ -1,0 +1,48 @@
+package com.hyl.common.enums;
+
+public enum ResponseCodeEnum {
+
+    HTTP_SUCCESS_CODE_200("200", "HTTP_SUCCESS_CODE_200"),
+    SYSTEM_ERROR("500", "SYSTEM_ERROR"),
+    TOKEN_IS_MISSION("203", "TOKEN_IS_MISSION"),
+    TOKEN_IS_ILLEGAL("203", "TOKEN_IS_ILLEGAL"),
+    TOKEN_IS_EXPIRED("203", "TOKEN_IS_EXPIRED"),
+    NOT_LOGIN("1001", "NOT_LOGIN"),
+    COOKIE_CHECK_ERROR("1002", "COOKIE_CHECK_ERROR"),
+    ACCOUNT_IS_EMPTY("1004", "ACCOUNT_IS_EMPTY"),
+    SECURITY_DATA_IS_EMPTY("1005", "SECURITY_DATA_IS_EMPTY"),
+    PASSWORD_IS_EMPTY("1010", "PASSWORD_IS_EMPTY"),
+    NEW_PASSWORD_IS_EMPTY("1012", "NEW_PASSWORD_IS_EMPTY"),
+    OLD_PASSWORD_IS_EMPTY("1012", "OLD_PASSWORD_IS_EMPTY"),
+    LOGIN_IS_EXPIRED("203","LOGIN_IS_EXPIRED"),
+    VALID_IS_EMPTY("3009","VALID_IS_EMPTY"),
+
+    LOGIN_FAILED("3001", "LOGIN_FAILED"),
+    VERIFICATION_IS_FAILED("3002","VERIFICATION_IS_FAILED"),
+    VERIFICATION_IS_EXPIRED("3005","VERIFICATION_IS_EXPIRED"),
+    OLD_PASSWORD_FAILED("3003", "OLD_PASSWORD_FAILED"),
+    SAME_PASSWORD("3004", "SAME_PASSWORD"),
+    JWT_DATA_EMPTY("3006","JWT_DATA_EMPTY"),
+    EXIT_FAILED("3007","EXIT_FAILED"),
+    SERVICE_IS_EMPTY("3008","SERVICE_IS_EMPTY"),
+    SERVER_EXCEPTION("ERROR", "SERVER_EXCEPTION"),
+
+    ACCOUNT_FREEZE("4001","ACCOUNT_FREEZE");
+
+    private final String code;
+    private final String message;
+
+    ResponseCodeEnum(String code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+}

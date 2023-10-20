@@ -1,0 +1,27 @@
+server:
+  port: 8001
+  undertow:
+    buffer-size: 1024
+    direct-buffers: false
+    threads:
+      io: 4
+      worker: 20
+  servlet:
+    context-path: /jxmarket-api
+spring:
+  application:
+    name: jxmarket-api-server
+  profiles:
+    active: @spring.profile.active@
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      logic-delete-field: del_flag
+  configuration:
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+  mapper-locations: classpath:mapper/*.xml
+api-url:
+  white-list:
+    - /business/sale/custom/save

@@ -1,0 +1,4 @@
+# Project exclude paths
+/jxmarket-admin/target/
+/jxmarket-common/target/
+/jxmarket-core/target/

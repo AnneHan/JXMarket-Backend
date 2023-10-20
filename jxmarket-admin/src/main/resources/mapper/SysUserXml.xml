@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyl.api.system.mapper.SysUserMapper">
+
+
+    <select id="getUserIdListByResourceId" resultType="java.lang.Long">
+        SELECT DISTINCT b.user_id
+        FROM sys_role_permission a
+                 LEFT JOIN sys_user_role b ON a.role_id = b.role_id
+        WHERE a.permission_id = #{resourceId}
+    </select>
+
+    <!-- 查询用户的所有菜单ID -->
+    <select id="queryAllMenuId" resultType="long">
+        select distinct rm.permission_id from sys_user_role ur
+         LEFT JOIN sys_role_permission rm on ur.role_id = rm.role_id
+        where ur.user_id = #{userId}
+    </select>
+
+
+    <!--查询用户信息 -->
+    <select id="selectByName" resultType="int">
+        select count(0) from sys_user  su
+        where su.username = #{username}
+    </select>
+
+</mapper>
